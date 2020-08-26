@@ -1,17 +1,18 @@
-var css = document.querySelector("h3");
-var color1 = document.querySelector(".color1");
-var color2 = document.querySelector(".color2");
-var body = document.getElementById("gradient");
-var randomBtn = document.getElementById("random");
+let css = document.querySelector("h3");
+let color1 = document.querySelector(".color1");
+let color2 = document.querySelector(".color2");
+let body = document.getElementById("gradient");
+let randomBtn = document.getElementById("random");
 
 //Prints default value 
-// css.textContent = "linear-gradient(to right, " + color1.value + ", " + color2.value + ")";
 css.textContent = `linear-gradient(to right, ${color1.value}, ${color2.value})`;
 
+// This is from CSS Tricks
+let randomMath = () => "#" + Math.floor(Math.random()*16777215).toString(16);
 //Generate random Gradient
-function randomColor() {
-    var random1 = "#" + Math.floor(Math.random()*16777215).toString(16);
-    var random2 = "#" + Math.floor(Math.random()*16777215).toString(16);
+let randomColor = () => {
+    let random1 = randomMath();
+    let random2 = randomMath();
     body.style.background = `linear-gradient(to right, ${random1}, ${random2})`;
     css.textContent = `linear-gradient(to right, ${color1.value}, ${color2.value})`;
     color1.value = random1
@@ -20,7 +21,7 @@ function randomColor() {
 }
 
 //Gradient function by input
-function setGradient() {
+let setGradient = () => {
     body.style.background = `linear-gradient(to right, ${color1.value}, ${color2.value})`;
     css.textContent = `linear-gradient(to right, ${color1.value}, ${color2.value})`;
 }
