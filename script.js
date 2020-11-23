@@ -1,34 +1,28 @@
-let css = document.querySelector("h3");
-let color1 = document.querySelector(".color1");
-let color2 = document.querySelector(".color2");
-let body = document.getElementById("gradient");
-let randomBtn = document.getElementById("random");
-
-//Prints default value 
-css.textContent = `linear-gradient(to right, ${color1.value}, ${color2.value})`;
-
+const css = document.querySelector("h3");
+const [color1, color2] = document.querySelectorAll(".color");
+const body = document.querySelector("#gradient");
+const randomBtn = document.querySelector("#random");
+// Set and show the current gradient
+const _cssText = () => `linear-gradient(to right, ${color1.value}, ${color2.value})`;
 // This is from CSS Tricks
-let randomMath = () => "#" + Math.floor(Math.random()*16777215).toString(16);
+const randomMath = () => "#" + Math.floor(Math.random()*16777215).toString(16);
 //Generate random Gradient
-let randomColor = () => {
-    let random1 = randomMath();
-    let random2 = randomMath();
-    body.style.background = `linear-gradient(to right, ${random1}, ${random2})`;
-    css.textContent = `linear-gradient(to right, ${color1.value}, ${color2.value})`;
+const randomColor = () => {
+    const random1 = randomMath();
+    const random2 = randomMath();
     color1.value = random1
     color2.value = random2
-
+    css.textContent = _cssText();
+    body.style.background = _cssText();
 }
-
 //Gradient function by input
-let setGradient = () => {
-    body.style.background = `linear-gradient(to right, ${color1.value}, ${color2.value})`;
-    css.textContent = `linear-gradient(to right, ${color1.value}, ${color2.value})`;
+const setGradient = () => {
+    body.style.background = _cssText();
+    css.textContent = _cssText();
 }
-
+//Prints default value 
+css.textContent = _cssText();
 //Event listeners 
 randomBtn.addEventListener("click", randomColor);
-
 color1.addEventListener("input", setGradient);
-
 color2.addEventListener("input", setGradient);
